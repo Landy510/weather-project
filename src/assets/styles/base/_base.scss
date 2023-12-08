@@ -9,3 +9,15 @@ img {
   height: auto;
   object-fit: cover;
 }
+
+::-webkit-scrollbar-track {
+  background: #E9E2F3;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #000;
+}
