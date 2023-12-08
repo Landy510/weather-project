@@ -1,0 +1,7 @@
+input {
+  @apply bg-[#fff] text-[1.25rem] px-3 py-2 h-8;
+}
+
+input:focus {
+  outline: none;
+}
