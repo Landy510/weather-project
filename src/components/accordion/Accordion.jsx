@@ -8,16 +8,16 @@ const Accordion = ({
   cityList
 }) => {
   return (
-    <ul className={[
-      'absolute left-[0] right-[0] z-[1] mx-3 shadow-[0_0_8px_rgba(0,0,0,0.3)] rounded-[0.5rem] max-h-[14rem] overflow-y-auto bg-[#fff] duration-500',
-      isAccordionShow ? 'translate-y-3' : '-translate-y-[250%]'
-    ].join(' ')}>
+    <ul 
+      className={[
+        'absolute left-[0] right-[0] z-[1] mx-3 shadow-[0_0_8px_rgba(0,0,0,0.3)] rounded-[0.5rem] max-h-[14rem] overflow-y-auto bg-[#fff] duration-500',
+        isAccordionShow ? 'translate-y-3' : '-translate-y-[250%]'
+      ].join(' ')}
+      onClick={() => setIsAccordionShow(false)}
+    >
       {
         cityList.length === 0 ?
-        <AccordionItem 
-          isEmpty={true} 
-          setIsAccordionShow={setIsAccordionShow}
-        />
+        <AccordionItem isEmpty={true} />
         :
         cityList.map((city, index) => {
           return <AccordionItem 
@@ -25,7 +25,6 @@ const Accordion = ({
             lat={city.lat}
             lon={city.lon}
             cityName={city.cityName}
-            setIsAccordionShow={setIsAccordionShow}
             isEmpty={false}
           />
         })
