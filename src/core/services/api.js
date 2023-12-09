@@ -1,7 +1,21 @@
-export function fetchGet(url, payload) {
+// export function fetchGet(url, payload) {
+//   let options = {
+//     method: 'GET',
+//     ...payload
+//   }
+//   return fetch(url, options);
+// } 
+
+export async function fetchGet(url, payload) {
   let options = {
     method: 'GET',
     ...payload
   }
-  return fetch(url, options);
+
+  const response = await fetch(url, options);
+  if(response.status === 200) {
+    return await response.json();
+  }
+
+  throw await response.json();
 } 

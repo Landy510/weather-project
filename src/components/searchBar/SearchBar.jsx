@@ -16,9 +16,8 @@ const SearchBar = ({setIsAccordionShow, setCityList}) => {
     timerId.current = setTimeout(async () => {
       try {
         const response = await getCities(inputVal);
-        const result = await response.json();
         setCityList(
-          result.data.map(item => ({
+          response.data.map(item => ({
             lat: item.latitude,
             lon: item.longitude,
             cityName: `${item.name}, ${item.regionCode}, ${item.countryCode}`
