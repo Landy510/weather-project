@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { globalLoadingContext } from '@/core/context/globalLoadingContext';
+import { globalLoadingContext } from '@/core/context/GlobalLoadingContext';
 
 const AccordionItem = ({lat, lon, cityName, isEmpty}) => {
   const {setIsLoading} = useContext(globalLoadingContext);

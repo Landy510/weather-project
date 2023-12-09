@@ -31,7 +31,8 @@ export default {
     extend: {
       colors: {
         Black: '#333333',
-        White: '#ffffff'
+        White: '#ffffff',
+        Grey: '#f5f5f5'
       }
     },
   },

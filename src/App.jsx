@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { globalLoadingContext } from './core/context/globalLoadingContext';
+import { globalLoadingContext } from './core/context/GlobalLoadingContext';
 import SearchArea from './components/searchArea/SearchArea';
 import CurrentWeather from './components/currentWeather/CurrentWeather';
+import DailyWeather from './components/dailyWeather/DailyWeather';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,6 +18,15 @@ function App() {
         {/* 當天氣資訊 api 索取完成後，讓天氣整體區塊透過 'loaded' 動畫的轉換，來提醒使用者新的天氣資訊已經更新 */}
         <div className={isLoading ? '' : 'loaded'}>
           <CurrentWeather />
+          <div className='mt-4'>
+            <h3 className='text-4xl mb-3'>Daily</h3>
+            <ul>
+              <DailyWeather />
+              <DailyWeather />
+              <DailyWeather />
+              <DailyWeather />
+            </ul>
+          </div>
         </div>
       </div>
     </div>
