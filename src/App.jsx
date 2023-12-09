@@ -22,52 +22,26 @@ function App() {
       <div className={isLoading ? 'opacity-40' : 'opacity-100'}> 
         {/* 當天氣資訊 api 索取完成後，讓天氣整體區塊透過 'loaded' 動畫的轉換，來提醒使用者新的天氣資訊已經更新 */}
         <div className={isLoading ? '' : 'loaded'}>
-          <CurrentWeather />
-          <div className='mt-4'>
-            <h3 className='text-4xl mb-3'>Daily</h3>
-            {/* <ul>
-              <DailyWeather />
-              <DailyWeather />
-              <DailyWeather />
-              <DailyWeather />
-            </ul> */}
-            {
-              Object.entries(forecastInfo).map(([keyVal, val]) => {
-                return (
-                  // <div key={keyVal}>
-                  //   <p>{keyVal}</p>
-                  //   <div className='flex justify-between'>
-                  //     {
-                  //       val.map(individualInfo => {
-                  //         return (
-                  //             <div 
-                  //               key={individualInfo.dt}
-                  //               className='mb-3'
-                  //             >
-                  //               <time>{new Date(individualInfo.dt*1000).getHours()}</time>
-                  //               <p className='text-[0.75rem]'>{individualInfo.weather[0].description}</p>
-                  //               <p className='text-[0.75rem]'>
-                  //                 {Math.ceil(individualInfo.main.temp_max)}°C / {Math.floor(individualInfo.main.temp_min)}°C
-                  //               </p>
-                  //               <img 
-                  //                 src={`https://openweathermap.org/img/wn/${individualInfo.weather[0].icon}@2x.png`} 
-                  //                 alt="" 
-                  //               /> 
-                  //             </div>
-                  //         )
-                  //       })
-                  //     }
-                  //   </div>
-                  // </div>
-                  <DailyWeather 
-                    key={keyVal}
-                    date={keyVal}
-                    val={val}
-                  /> 
-                )
-              })
-            }
-          </div>
+          {
+            currentWeatherInfo && <CurrentWeather data={currentWeatherInfo} />
+          }
+          {
+            forecastInfo.length !== 0 &&
+            <div className='mt-4'>
+              <h3 className='text-4xl mb-3'>Daily</h3>
+              {
+                Object.entries(forecastInfo).map(([keyVal, val]) => {
+                  return (
+                    <DailyWeather 
+                      key={keyVal}
+                      date={keyVal}
+                      val={val}
+                    /> 
+                  )
+                })
+              }
+            </div>
+          }
         </div>
       </div>
     </div>

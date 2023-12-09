@@ -4,7 +4,7 @@ const DailyWeather = ({date, val}) => {
   return (
     <>
       <p>{date}</p>
-      <div className="py-3 px-2 mb-5 bg-White shadow-[0_0_5px_rgba(0,0,0,0.3)] rounded-[2rem] flex items-center justify-between duration-500 hover:translate-x-3">
+      <div className="py-3 pl-3 pr-2 mb-5 bg-White shadow-[0_0_5px_rgba(0,0,0,0.3)] rounded-[2rem] flex items-center justify-between duration-500 hover:translate-x-3">
         {
           val.map(individualInfo => {
             return (
