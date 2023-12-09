@@ -28,7 +28,7 @@ const SearchBar = ({setIsAccordionShow, setCityList}) => {
       catch(err) {
         console.error(err);
       }
-    }, 1000)
+    }, 500)
     // --- END ---
   }
 
