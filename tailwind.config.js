@@ -28,7 +28,12 @@ export default {
       'tablet': '768px',
       'desktop': '1296px',
     },
-    extend: {},
+    extend: {
+      colors: {
+        Black: '#333333',
+        White: '#ffffff'
+      }
+    },
   },
   plugins: [],
 }
