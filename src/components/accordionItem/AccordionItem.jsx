@@ -1,25 +1,31 @@
 import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { globalLoadingContext } from '@/core/context/GlobalLoadingContext';
-import { getCurrentWeather } from '@/core/services/weather';
+import { getCurrentWeather, getForecastWeather } from '@/core/services/weather';
 
 const AccordionItem = ({lat, lon, cityName, isEmpty}) => {
   const {setIsLoading} = useContext(globalLoadingContext);
 
   const fetchWeatherInfo = async () => {
-    getCurrentWeather(lat, lon)
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
-    
+    try {
+      const results = await Promise.all([getCurrentWeather(lat, lon), getForecastWeather(lat, lon)]);
+      console.log(results)
+      setIsLoading(false);
+    }
+    catch(err) {
+      setIsLoading(false);
+    }
+  }
+
+  const onClickEvt = () => {
+    setIsLoading(true);
+    fetchWeatherInfo()
   }
 
   return (
     <li 
       className="p-3 cursor-pointer hover:bg-slate-50"
-      onClick={async () => {
-        setIsLoading(true);
-        fetchWeatherInfo();
-      }}
+      onClick={isEmpty ? null : () => onClickEvt()}
     >
       {
         isEmpty ? 
