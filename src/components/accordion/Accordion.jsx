@@ -8,6 +8,7 @@ import { weatherContext } from '@/core/context/WeatherContext';
 const Accordion = ({
   isAccordionShow, 
   setIsAccordionShow,
+  setSelectedCity,
   cityList
 }) => {
   const {setIsLoading} = useContext(globalLoadingContext);
@@ -19,10 +20,16 @@ const Accordion = ({
       const [currInfo, foreCastInfo] = await Promise.all([getCurrentWeather(lat, lon), getForecastWeather(lat, lon)]);
       let tempObj = {};
       foreCastInfo.list.forEach(info => {
-        const date = new Date(info.dt*1000).getDate();
-        if(date !== new Date().getDate()) { // 因為只有要呈現未來五日的資訊，所以，當日的資料不塞入
-          if(!tempObj[date]) tempObj[date] = []
-          tempObj[date].push(info)
+        // const date = new Date(info.dt*1000).getDate();
+        // if(date !== new Date().getDate()) { // 因為只有要呈現未來五日的資訊，所以，當日的資料不塞入
+        //   if(!tempObj[date]) tempObj[date] = []
+        //   tempObj[date].push(info)
+        // }
+
+        const day = new Date(info.dt*1000).getDay();
+        if(new Date(info.dt*1000).getDate() !== new Date().getDate()) { // 因為只有要呈現未來五日的資訊，所以，當日的資料不塞入
+          if(!tempObj[day]) tempObj[day] = []
+          tempObj[day].push(info)
         }
       })
       setCurrentWeatherInfo(currInfo);
@@ -39,7 +46,7 @@ const Accordion = ({
     <ul 
       className={[
         'absolute left-[0] right-[0] z-[1] mx-3 shadow-[0_0_8px_rgba(0,0,0,0.3)] rounded-[0.5rem] max-h-[14rem] overflow-y-auto bg-[#fff] duration-500',
-        isAccordionShow ? 'translate-y-3' : '-translate-y-[250%]'
+        isAccordionShow ? 'translate-y-2' : '-translate-y-[250%]'
       ].join(' ')}
       onClick={() => setIsAccordionShow(false)}
     >
@@ -54,7 +61,10 @@ const Accordion = ({
               <li 
                 key={index}
                 className="p-3 cursor-pointer hover:bg-slate-50"
-                onClick={() => fetchWeatherInfo(city.lat, city.lon)}
+                onClick={() => {
+                  setSelectedCity(city.cityName)
+                  fetchWeatherInfo(city.lat, city.lon)
+                }}
               >
                   {city.cityName}
               </li>
@@ -70,5 +80,6 @@ export default Accordion;
 Accordion.propTypes = {
   isAccordionShow: PropTypes.bool,
   setIsAccordionShow: PropTypes.func,
+  setSelectedCity: PropTypes.func,
   cityList: PropTypes.array
 }

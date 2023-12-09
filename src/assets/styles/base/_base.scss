@@ -2,6 +2,7 @@ body {
   font-family: 'Noto Sans TC', sans-serif, PingFang, Microsoft JhengHei;
   line-height: 1.5px;
   min-height: 100vh;
+  @apply bg-Grey;
 }
 
 img {

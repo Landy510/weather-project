@@ -28,13 +28,13 @@ function App() {
           {
             forecastInfo.length !== 0 &&
             <div className='mt-4'>
-              <h3 className='text-4xl mb-3'>Daily</h3>
+              <h3 className='text-4xl mb-3 font-Inter'>Forecast</h3>
               {
                 Object.entries(forecastInfo).map(([keyVal, val]) => {
                   return (
                     <DailyWeather 
                       key={keyVal}
-                      date={keyVal}
+                      day={keyVal}
                       val={val}
                     /> 
                   )
