@@ -1,9 +1,18 @@
+import { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { globalLoadingContext } from '@/core/context/globalLoadingContext';
 
 const AccordionItem = ({lat, lon, cityName, isEmpty}) => {
+  const {setIsLoading} = useContext(globalLoadingContext);
   return (
     <li 
       className="p-3 cursor-pointer hover:bg-slate-50"
+      onClick={() => {
+        setIsLoading(true);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1500)
+      }}
     >
       {
         isEmpty ? 
