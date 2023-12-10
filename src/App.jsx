@@ -11,7 +11,11 @@ function App() {
   const [forecastInfo, setForecastInfo] = useState([]);
 
   return (
-    <div className='max-w-[1024px] px-3 pt-3 mx-auto'>
+    <div className='max-w-[1024px] px-3 mx-auto'>
+      <h1 className='text-center text-[3rem] relative z-[2] bg-Grey'>
+        <span className='font-thin mr-4'>Weather</span> 
+        <span className='font-Inter'>Forecast</span>
+      </h1>
       <globalLoadingContext.Provider value={{isLoading, setIsLoading}}>
         <weatherContext.Provider value={{setCurrentWeatherInfo, setForecastInfo}}>
           <SearchArea />
@@ -24,7 +28,7 @@ function App() {
         <div className={isLoading ? '' : 'loaded'}>
           {
             !currentWeatherInfo && forecastInfo.length === 0 ?
-            <p className='text-[3rem] font-Inter text-center'>- No Related Weather Info -</p>
+            <p className='text-[3rem] font-thin text-center mt-10'>- No Related Weather Info -</p>
             :
             <>
               <CurrentWeather data={currentWeatherInfo} />

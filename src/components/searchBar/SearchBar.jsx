@@ -6,13 +6,13 @@ const SearchBar = ({inputVal, onInputChange, isCityListLoading}) => {
     <form 
       onSubmit={null}
       className={[
-        "relative z-[2] bg-White flex items-center border-black border-[1px] border-solid rounded-[2rem] pl-3 pr-2",
+        "relative z-[2] bg-White flex items-center shadow-[0_0_8px_rgba(0,0,0,0.3)] rounded-[2rem] pl-3 pr-2",
         isCityListLoading && 'opacity-40'
       ].join(' ')}
     >
       <input 
         className="grow bg-transparent"
-        placeholder='Please Input City Name(e.g. Taipei)'
+        placeholder='Please Input City Name (e.g. Taipei)'
         type="text"
         value={inputVal}
         onChange={e => onInputChange(e)}
