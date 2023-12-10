@@ -9,7 +9,8 @@ const SearchArea = () => {
   const [isAccordionShow, setIsAccordionShow] = useState(false);
   const [cityList, setCityList] = useState([]);
   const [selectedCity, setSelectedCity] = useState('');
-  const {inputVal, onInputChange} = useCitySearch(setCityList, setIsAccordionShow);
+  const [isCityListLoading, setIsCityListLoading] = useState(false);
+  const {inputVal, onInputChange} = useCitySearch(setCityList, setIsAccordionShow, setIsCityListLoading);
   
   return (
     <>
@@ -18,6 +19,7 @@ const SearchArea = () => {
           inputVal={inputVal}
           onInputChange={onInputChange}
           selectedCity={selectedCity}
+          isCityListLoading={isCityListLoading}
         />
         <Accordion 
           isAccordionShow={isAccordionShow} 

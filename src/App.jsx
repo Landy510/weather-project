@@ -23,24 +23,26 @@ function App() {
         {/* 當天氣資訊 api 索取完成後，讓天氣整體區塊透過 'loaded' 動畫的轉換，來提醒使用者新的天氣資訊已經更新 */}
         <div className={isLoading ? '' : 'loaded'}>
           {
-            currentWeatherInfo && <CurrentWeather data={currentWeatherInfo} />
-          }
-          {
-            forecastInfo.length !== 0 &&
-            <div className='mt-4'>
-              <h3 className='text-4xl mb-3 font-Inter'>Forecast</h3>
-              {
-                Object.entries(forecastInfo).map(([keyVal, val]) => {
-                  return (
-                    <DailyWeather 
-                      key={keyVal}
-                      day={keyVal}
-                      val={val}
-                    /> 
-                  )
-                })
-              }
-            </div>
+            !currentWeatherInfo && forecastInfo.length === 0 ?
+            <p className='text-[3rem] font-Inter text-center'>- No Related Weather Info -</p>
+            :
+            <>
+              <CurrentWeather data={currentWeatherInfo} />
+              <div className='mt-4'>
+                <h3 className='text-4xl mb-3 font-Inter'>Forecast</h3>
+                {
+                  Object.entries(forecastInfo).map(([keyVal, val]) => {
+                    return (
+                      <DailyWeather 
+                        key={keyVal}
+                        day={keyVal}
+                        val={val}
+                      /> 
+                    )
+                  })
+                }
+              </div>
+            </>
           }
         </div>
       </div>
