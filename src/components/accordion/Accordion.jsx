@@ -20,14 +20,8 @@ const Accordion = ({
       const [currInfo, foreCastInfo] = await Promise.all([getCurrentWeather(lat, lon), getForecastWeather(lat, lon)]);
       let tempObj = {};
       foreCastInfo.list.forEach(info => {
-        // const date = new Date(info.dt*1000).getDate();
-        // if(date !== new Date().getDate()) { // 因為只有要呈現未來五日的資訊，所以，當日的資料不塞入
-        //   if(!tempObj[date]) tempObj[date] = []
-        //   tempObj[date].push(info)
-        // }
-
         const day = new Date(info.dt*1000).getDay();
-        if(new Date(info.dt*1000).getDate() !== new Date().getDate()) { // 因為只有要呈現未來五日的資訊，所以，當日的資料不塞入
+        if(new Date(info.dt*1000).getDate() !== new Date().getDate()) { // 只需要呈現未來五日的資訊，所以，當日的資料不塞入
           if(!tempObj[day]) tempObj[day] = []
           tempObj[day].push(info)
         }

@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 
 import { getCities } from "@/core/services/cities";
 
-const useCitySearch = (setCityList, setIsAccordionShow) => {
+const useCitySearch = (setCityList, setIsAccordionShow, setIsCityListLoading) => {
   const [value, setValue] = useState('');
   const timerId = useRef(null);
 
@@ -14,6 +14,7 @@ const useCitySearch = (setCityList, setIsAccordionShow) => {
     // --- debounce feature | START ---
     timerId.current = setTimeout(async () => {
       try {
+        setIsCityListLoading(true);
         const response = await getCities(inputVal);
         setCityList(
           response.data.map(item => ({
@@ -23,9 +24,11 @@ const useCitySearch = (setCityList, setIsAccordionShow) => {
           }))
         )
         setIsAccordionShow(true);
+        setIsCityListLoading(false);
       }
       catch(err) {
         console.error(err);
+        setIsCityListLoading(false);
       }
     }, 500)
     // --- END ---

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const CurrentWeather = ({data}) => {
   return (
-    <div className="mx-auto mt-3 pb-3 max-h-[20rem] max-w-[30rem] rounded-[0.5rem] bg-Black flex items-start">
+    <div className="mx-auto mt-3 pb-3 max-h-[20rem] max-w-[30rem] rounded-[0.5rem] bg-Black flex items-start bg-Black-500">
       <div className='text-White grow h-full flex flex-col pl-3'>
         <p className='text-[2rem] font-thin mb-6'>{data.weather[0].description}</p>
         <div className='mt-auto'>
