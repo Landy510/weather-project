@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { globalLoadingContext } from "../context/GlobalLoadingContext";
+import { GlobalLoadingContext } from "@/components/globalContextBoundary/GlobalContextBoundary";
 import { getCurrentWeather, getForecastWeather } from "../services/weather";
 
 const useWeatherFetchAndProcess = (setCurrentWeatherInfo, setForecastInfo) => {
-  const {setIsLoading} = useContext(globalLoadingContext);
+  const {setIsGlobalLoading} = useContext(GlobalLoadingContext);
 
   const fetchWeatherInfo = async (city) => {
-    setIsLoading(true);
+    setIsGlobalLoading(true);
     try {
       const [currentWeatherInfo, forecastInfo] = await Promise.all([getCurrentWeather(city.lat, city.lon), getForecastWeather(city.lat, city.lon)]);
       let tempForecastInfo = {}
@@ -20,10 +20,10 @@ const useWeatherFetchAndProcess = (setCurrentWeatherInfo, setForecastInfo) => {
 
       setCurrentWeatherInfo(currentWeatherInfo)
       setForecastInfo(tempForecastInfo);
-      setIsLoading(false);
+      setIsGlobalLoading(false);
     }
     catch(err) {
-      setIsLoading(false);
+      setIsGlobalLoading(false);
     }
   }
 
