@@ -36,6 +36,7 @@ const useCitySearch = (setCityList, setIsAccordionShow, setIsCityListLoading) =>
 
   return {
     inputVal: value,
+    setInputValue: setValue,
     onInputChange: onChange
   }
 }

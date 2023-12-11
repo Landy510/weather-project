@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 
 const Accordion = ({
-  isAccordionShow, 
+  isAccordionShow,
   onMenuClick,
   onItemClick,
   cityList
 }) => {
+
   return (
     <ul 
       className={[
