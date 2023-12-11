@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { globalLoadingContext } from './core/context/GlobalLoadingContext';
-import { weatherContext } from './core/context/WeatherContext';
 import SearchArea from './components/searchArea/SearchArea';
 import CurrentWeather from './components/currentWeather/CurrentWeather';
 import DailyWeather from './components/dailyWeather/DailyWeather';
@@ -13,13 +12,15 @@ function App() {
   return (
     <div className='max-w-[1024px] px-3 mx-auto'>
       <h1 className='text-center text-[3rem] relative z-[2] bg-Grey'>
-        <span className='font-thin mr-4'>Weather</span> 
+        <span className='font-thin'>Weather  </span> 
         <span className='font-Inter'>Forecast</span>
       </h1>
-      <globalLoadingContext.Provider value={{isLoading, setIsLoading}}>
-        <weatherContext.Provider value={{setCurrentWeatherInfo, setForecastInfo}}>
-          <SearchArea />
-        </weatherContext.Provider>
+
+      <globalLoadingContext.Provider value={{setIsLoading}}>
+        <SearchArea 
+            setCurrentWeatherInfo={setCurrentWeatherInfo}
+            setForecastInfo={setForecastInfo}
+          />
       </globalLoadingContext.Provider>
 
       {/* 當正在執行天氣資訊 api 的資料索取時，有關呈現天氣資訊的區域會加這一個效果 */}
