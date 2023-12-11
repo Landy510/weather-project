@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import temperatureTransfer from '@/core/utils/temperatureTransfer';
 
 const CurrentWeather = ({data}) => {
   return (
@@ -7,9 +8,11 @@ const CurrentWeather = ({data}) => {
         <p className='text-[2rem] font-thin mb-6'>{data.weather[0].description}</p>
         <div className='mt-auto'>
           <p className='font-thin'>Current Temperature</p>
-          <p className='text-[4.5rem] font-Inter'>{Math.round(data.main.temp)}°C</p>
+          <p className='text-[4.5rem] font-Inter'>{temperatureTransfer(data.main.temp, 'metric', 'normal')}</p>
         </div>
-        <p>H: {Math.ceil(data.main.temp_max)}°C / L: {Math.floor(data.main.temp_min)}°C</p>
+        <p>
+          H: {temperatureTransfer(data.main.temp_max, 'metric', 'max')} / L: {temperatureTransfer(data.main.temp_min, 'metric', 'min')}
+        </p>
       </div>
       <img 
         src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`} 

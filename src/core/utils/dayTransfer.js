@@ -8,6 +8,14 @@ const WEEK_DAYS = {
   6: 'Saturday'
 }
 
-export const dayTransfer = (day) => {
+/**
+ * 回傳相對應的星期文字
+ *
+ * @param {*} day - 0 | 1 | 2 | 3 | 4 | 5 | 6
+ * @return {*} 
+ */
+const dayTransfer = (day) => {
   return WEEK_DAYS[day];
 }
+
+export default dayTransfer;

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import { dayTransfer } from '@/core/utils/dayTransfer';
+import dayTransfer from '@/core/utils/dayTransfer';
+import temperatureTransfer from '@/core/utils/temperatureTransfer';
 
 const DailyWeather = ({day, val}) => {
   return (
@@ -13,7 +14,7 @@ const DailyWeather = ({day, val}) => {
                   <time>{new Date(individualInfo.dt*1000).getHours()}</time>
                   <p className='text-[0.75rem]'>{individualInfo.weather[0].description}</p>
                   <p className='text-[0.75rem]'>
-                    {Math.ceil(individualInfo.main.temp_max)}°C / {Math.floor(individualInfo.main.temp_min)}°C
+                    {temperatureTransfer(individualInfo.main.temp_max, 'metric', 'max')} / {temperatureTransfer(individualInfo.main.temp_min, 'metric', 'min')}
                   </p>
                   <img 
                     src={`https://openweathermap.org/img/wn/${individualInfo.weather[0].icon}@2x.png`} 
