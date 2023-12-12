@@ -3,6 +3,14 @@ import dayTransfer from '@/core/utils/dayTransfer';
 import temperatureTransfer from '@/core/utils/temperatureTransfer';
 import formatTime from '@/core/utils/formatTime';
 
+
+/**
+ * 呈現指定城市的未來天氣資訊
+ *
+ * @param {*} day - 該天是星期幾 (e.g. 0 ~ 6)
+ * @param {*} val - 該天天氣資訊
+ * @return {*} 
+ */
 const DailyWeather = ({day, val}) => {
   return (
     <>

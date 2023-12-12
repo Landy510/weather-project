@@ -2,6 +2,15 @@ import { useState, useRef } from "react";
 
 import { getCities } from "@/core/services/cities";
 
+
+/**
+ * 取得使用者搜尋的相關城市列表
+ *
+ * @param {*} setCityList - 設定相關城市資訊
+ * @param {*} setIsAccordionShow - 設定要是否要開關下拉選單
+ * @param {*} setIsCityListLoading - 設定是否開啟 SearchBar 元件的 loading 效果
+ * @return {*} 
+ */
 const useCitySearch = (setCityList, setIsAccordionShow, setIsCityListLoading) => {
   const [value, setValue] = useState('');
   const timerId = useRef(null);

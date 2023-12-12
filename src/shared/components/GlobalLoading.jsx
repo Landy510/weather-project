@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 /**
  * 全屏 loading 效果
  *
- * @param {*} {isShow}
+ * @param {*} isShow - 是否要顯示 loading 效果
  * @return {*} 
  */
 const GlobalLoading = ({isShow}) => {

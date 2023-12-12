@@ -1,5 +1,15 @@
 import PropTypes from 'prop-types';
 
+
+/**
+ * 呈現搜尋城市列表的下拉選單
+ *
+ * @param {*} isAccordionShow - 下拉選單是否為開啟狀態的旗標
+ * @param {*} onMenuClick, - <ul /> 元素被點擊時，會觸發的相對應事件 
+ * @param {*} onItemClick, - <li /> 元素被點擊時，會觸發的相對應事件
+ * @param {*} cityList - 城市列表的搜尋結果
+ * @return {*} 
+ */
 const Accordion = ({
   isAccordionShow,
   onMenuClick,

@@ -6,7 +6,7 @@ export const GlobalLoadingContext = createContext(null); // 管理切換全域 l
 /**
  * 用來管理專案裡會用到的全域 Context 的元件
  *
- * @param {*} {children}
+ * @param {*} {children} - 映射內容
  * @return {*} 
  */
 const GlobalContextBoundary = ({children}) => {

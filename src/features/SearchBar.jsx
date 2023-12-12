@@ -1,5 +1,14 @@
 import PropTypes from 'prop-types';
 
+
+/**
+ * 城市搜尋輸入欄位
+ *
+ * @param {*} inputVal - 綁定到 input 欄位上的值
+ * @param {*} onInputChange - input 欄位的 onChange 事件會觸發的綁定事件
+ * @param {*} isCityListLoading - 判斷是否正在取得成是列表的旗標
+ * @return {*} 
+ */
 const SearchBar = ({inputVal, onInputChange, isCityListLoading}) => {
   
   return (

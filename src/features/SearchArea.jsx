@@ -7,6 +7,14 @@ import useWeatherFetchAndProcess from '@/core/hooks/useWeatherFetchAndProcess';
 import SearchBar from '@/features/SearchBar';
 import Accordion from '@/features/Accordion';
 
+
+/**
+ * 用來管理 SearchBar 和 Accordion 需要使用的共用狀態
+ *
+ * @param {*} setCurrentWeatherInfo - 設定指定城市的當前天氣資訊
+ * @param {*} setForecastInfo - 設定指定城市未來五天的天氣資訊
+ * @return {*} 
+ */
 const SearchArea = ({setCurrentWeatherInfo, setForecastInfo}) => {
   const [isAccordionShow, setIsAccordionShow] = useState(false);
   const [cityList, setCityList] = useState([]);

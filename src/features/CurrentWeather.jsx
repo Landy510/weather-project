@@ -1,6 +1,13 @@
 import PropTypes from 'prop-types';
 import temperatureTransfer from '@/core/utils/temperatureTransfer';
 
+
+/**
+ * 呈現指定城市的當前天氣
+ *
+ * @param {*} data - 當前天氣的資訊
+ * @return {*} 
+ */
 const CurrentWeather = ({data}) => {
   return (
     <div className="mx-auto mt-3 pb-3 max-h-[20rem] max-w-[30rem] rounded-[0.5rem] bg-Black flex items-start bg-Black-500">

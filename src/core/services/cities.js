@@ -8,6 +8,13 @@ const options = {
   }
 }
 
+/**
+ * 取得使用者搜尋的相關城市 api
+ *
+ * @export
+ * @param {*} cityName - 要搜尋的城市關鍵字
+ * @return {*} 
+ */
 export function getCities(cityName) {
   return fetchGet(`${domain_name}?namePrefix=${cityName}`, options);
 }
