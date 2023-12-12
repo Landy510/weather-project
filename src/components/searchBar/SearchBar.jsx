@@ -6,8 +6,8 @@ const SearchBar = ({inputVal, onInputChange, isCityListLoading}) => {
     <form 
       onSubmit={null}
       className={[
-        "relative z-[2] bg-White flex items-center shadow-[0_0_8px_rgba(0,0,0,0.3)] rounded-[2rem] pl-3 pr-2",
-        isCityListLoading && 'opacity-40'
+        "relative z-[3] bg-White flex items-center shadow-[0_0_8px_rgba(0,0,0,0.3)] rounded-[2rem] pl-3 pr-2 mt-2",
+        isCityListLoading ? 'opacity-40' : ''
       ].join(' ')}
     >
       <input 

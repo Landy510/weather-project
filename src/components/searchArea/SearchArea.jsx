@@ -16,6 +16,16 @@ const SearchArea = ({setCurrentWeatherInfo, setForecastInfo}) => {
   
   return (
     <>
+      {/* --- 當下拉選單出現，這個毛玻璃的效果會墊在選單底下，若使用者點擊這個區域，可以直接關閉選單 | START --- */}
+      <div 
+        className={[
+          'fixed top-[0] left-[0] w-full h-full backdrop-blur-sm z-[2]',
+          isAccordionShow ? '' : 'hidden'
+        ].join(' ')}
+        onClick={() => setIsAccordionShow(false)}
+      ></div>
+      {/* --- END --- */}
+
       <div className='relative'>
         <SearchBar 
           inputVal={inputVal}
@@ -27,6 +37,7 @@ const SearchArea = ({setCurrentWeatherInfo, setForecastInfo}) => {
           setIsAccordionShow={setIsAccordionShow}
           cityList={cityList}
           onMenuClick={() => setIsAccordionShow(false)}
+          onAccordionClose={() => setIsAccordionShow(false)}
           onItemClick={city => {
             setInputValue(city.cityName)
             fetchWeatherInfo(city)
