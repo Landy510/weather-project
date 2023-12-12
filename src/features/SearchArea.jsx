@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import useCitySearch from '@/core/hooks/useCitySearch';
 import useWeatherFetchAndProcess from '@/core/hooks/useWeatherFetchAndProcess';
 
-import SearchBar from '../searchBar/SearchBar';
-import Accordion from '../accordion/Accordion';
+import SearchBar from '@/features/SearchBar';
+import Accordion from '@/features/Accordion';
 
 const SearchArea = ({setCurrentWeatherInfo, setForecastInfo}) => {
   const [isAccordionShow, setIsAccordionShow] = useState(false);

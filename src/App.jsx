@@ -1,10 +1,10 @@
 import { useState, useContext } from 'react';
-import {GlobalLoadingContext} from './components/globalContextBoundary/GlobalContextBoundary';
+import { GlobalLoadingContext } from './features/GlobalContextBoundary';
 
-import SearchArea from './components/searchArea/SearchArea';
-import CurrentWeather from './components/currentWeather/CurrentWeather';
-import DailyWeather from './components/dailyWeather/DailyWeather';
-import GlobalLoading from './components/GlobalLoading';
+import GlobalLoading from './shared/components/GlobalLoading';
+import SearchArea from './features/SearchArea';
+import DailyWeather from './features/DailyWeather';
+import CurrentWeather from './features/CurrentWeather';
 
 function App() {
   const [currentWeatherInfo, setCurrentWeatherInfo] = useState(null);

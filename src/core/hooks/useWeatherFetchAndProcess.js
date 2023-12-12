@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { GlobalLoadingContext } from "@/components/globalContextBoundary/GlobalContextBoundary";
+import { GlobalLoadingContext } from "@/features/GlobalContextBoundary";
 import { getCurrentWeather, getForecastWeather } from "../services/weather";
 
 
