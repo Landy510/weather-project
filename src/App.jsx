@@ -7,11 +7,11 @@ import DailyWeather from './components/dailyWeather/DailyWeather';
 
 function App() {
   const [currentWeatherInfo, setCurrentWeatherInfo] = useState(null);
-  const [forecastInfo, setForecastInfo] = useState([]);
+  const [forecastInfo, setForecastInfo] = useState(new Map());
   const {isGlobalLoading} = useContext(GlobalLoadingContext);
 
   return (
-    <div className='max-w-[1024px] px-3 mx-auto'>
+    <div className='max-w-[1024px] px-3 pb-2 mx-auto'>
         <h1 className='text-center text-[3rem] relative z-[2] bg-Grey'>
           <span className='font-thin'>Weather  </span> 
           <span className='font-Inter'>Forecast</span>
@@ -27,7 +27,7 @@ function App() {
           {/* 當天氣資訊 api 索取完成後，讓天氣整體區塊透過 'loaded' 動畫的轉換，來提醒使用者新的天氣資訊已經更新 */}
           <div className={isGlobalLoading ? '' : 'loaded'}>
             {
-              !currentWeatherInfo && forecastInfo.length === 0 ?
+              !currentWeatherInfo && [...forecastInfo.keys()].length === 0 ?
               <p className='text-[3rem] font-thin text-center mt-10'>- No Related Weather Info -</p>
               :
               <>
@@ -35,13 +35,13 @@ function App() {
                 <div className='mt-4'>
                   <h3 className='text-4xl mb-3 font-Inter'>Forecast</h3>
                   {
-                    Object.entries(forecastInfo).map(([keyVal, val]) => {
+                    [...forecastInfo.entries()].map(([key, val]) => {
                       return (
                         <DailyWeather 
-                          key={keyVal}
-                          day={keyVal}
+                          key={key}
+                          day={key}
                           val={val}
-                        /> 
+                        />
                       )
                     })
                   }

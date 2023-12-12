@@ -36,6 +36,7 @@ const DailyWeather = ({day, val}) => {
 export default DailyWeather;
 
 DailyWeather.propTypes = {
-  day: PropTypes.string,
+  // day: PropTypes.string,
+  day: PropTypes.number,
   val: PropTypes.array
 }
