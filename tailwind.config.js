@@ -25,7 +25,11 @@ export default {
           default: '#333333'
         },
         White: '#ffffff',
-        Grey: '#f5f5f5'
+        Grey: '#f5f5f5',
+        Danger: {
+          100: '#ECBBC4',
+          500: '#CB747E'
+        }
       }
     },
   },

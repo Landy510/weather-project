@@ -1,7 +1,9 @@
 import { useState, useContext } from 'react';
-import { GlobalLoadingContext } from './features/GlobalContextBoundary';
+import { GlobalLoadingContext, GlobalErrorModalContext } from './features/GlobalContextBoundary';
 
 import GlobalLoading from './shared/components/GlobalLoading';
+import GlobalErrorModal from './shared/components/GlobalErrorModal';
+
 import SearchArea from './features/SearchArea';
 import DailyWeather from './features/DailyWeather';
 import CurrentWeather from './features/CurrentWeather';
@@ -10,11 +12,17 @@ function App() {
   const [currentWeatherInfo, setCurrentWeatherInfo] = useState(null);
   const [forecastInfo, setForecastInfo] = useState(new Map());
   const {isGlobalLoading} = useContext(GlobalLoadingContext);
+  const {globalErrorModalInfo, setGlobalErrorModalInfo} = useContext(GlobalErrorModalContext);
 
   return (
     <>
       <GlobalLoading isShow={isGlobalLoading} />
-
+      <GlobalErrorModal 
+        isShow={globalErrorModalInfo.show}
+        message={globalErrorModalInfo.message}
+        closeModalEvt={() => setGlobalErrorModalInfo(prev => ({...prev, show: false}))}
+      />
+      
       <div className='max-w-[1024px] px-3 pb-2 mx-auto'>
         <h1 className='text-center text-[3rem] relative z-[3] bg-Grey'>
           <span className='font-thin'>Weather  </span> 
@@ -50,7 +58,7 @@ function App() {
               </>
             }
           </div>
-        </div>
+      </div>
     </>
     
   )

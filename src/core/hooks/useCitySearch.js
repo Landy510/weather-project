@@ -1,6 +1,7 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 
 import { getCities } from "@/core/services/cities";
+import { GlobalErrorModalContext } from "@/features/GlobalContextBoundary";
 
 
 /**
@@ -12,14 +13,15 @@ import { getCities } from "@/core/services/cities";
  * @return {*} 
  */
 const useCitySearch = (setCityList, setIsAccordionShow, setIsCityListLoading) => {
+  const {setGlobalErrorModalInfo} = useContext(GlobalErrorModalContext);
   const [value, setValue] = useState('');
   const timerId = useRef(null);
 
   const onChange = e => {
     const inputVal = e.target.value.trim();
     setValue(inputVal);
-    if(!inputVal) return; // 沒有輸入內容就不去打 api
     if(timerId.current) clearTimeout(timerId.current);
+    if(!inputVal) return; // 沒有輸入內容就不去打 api
     // --- debounce feature | START ---
     timerId.current = setTimeout(async () => {
       try {
@@ -36,7 +38,10 @@ const useCitySearch = (setCityList, setIsAccordionShow, setIsCityListLoading) =>
         setIsCityListLoading(false);
       }
       catch(err) {
-        console.error(err);
+        setGlobalErrorModalInfo({
+          show: true,
+          message: err.message
+        })
         setIsCityListLoading(false);
       }
     }, 500)

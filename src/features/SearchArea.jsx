@@ -42,14 +42,12 @@ const SearchArea = ({setCurrentWeatherInfo, setForecastInfo}) => {
         />
         <Accordion 
           isAccordionShow={isAccordionShow} 
-          setIsAccordionShow={setIsAccordionShow}
-          cityList={cityList}
           onMenuClick={() => setIsAccordionShow(false)}
-          onAccordionClose={() => setIsAccordionShow(false)}
           onItemClick={city => {
             setInputValue(city.cityName)
             fetchWeatherInfo(city)
           }}
+          cityList={cityList}
         />
       </div>
     </>

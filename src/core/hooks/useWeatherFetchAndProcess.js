@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { GlobalLoadingContext } from "@/features/GlobalContextBoundary";
+import { GlobalLoadingContext, GlobalErrorModalContext } from "@/features/GlobalContextBoundary";
 import { getCurrentWeather, getForecastWeather } from "../services/weather";
 
 
@@ -12,6 +12,7 @@ import { getCurrentWeather, getForecastWeather } from "../services/weather";
  */
 const useWeatherFetchAndProcess = (setCurrentWeatherInfo, setForecastInfo) => {
   const {setIsGlobalLoading} = useContext(GlobalLoadingContext);
+  const {setGlobalErrorModalInfo} = useContext(GlobalErrorModalContext);
 
   const fetchWeatherInfo = async (city) => {
     setIsGlobalLoading(true);
@@ -33,6 +34,7 @@ const useWeatherFetchAndProcess = (setCurrentWeatherInfo, setForecastInfo) => {
       setIsGlobalLoading(false);
     }
     catch(err) {
+      setGlobalErrorModalInfo({show: true, message: err.message})
       setIsGlobalLoading(false);
     }
   }
