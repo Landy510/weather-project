@@ -20,7 +20,7 @@ const SearchBar = ({inputVal, onInputChange, isCityListLoading}) => {
       ].join(' ')}
     >
       <input 
-        className="grow bg-transparent"
+        className="w-[1px] grow bg-transparent"
         placeholder='Please Input City Name (e.g. Taipei)'
         type="text"
         value={inputVal}
