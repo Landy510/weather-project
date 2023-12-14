@@ -29,6 +29,10 @@ export default {
         Danger: {
           100: '#ECBBC4',
           500: '#CB747E'
+        },
+        Warning: {
+          100: '#ffe58f',
+          500: '#FAAD14'
         }
       }
     },

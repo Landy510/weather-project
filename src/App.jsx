@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { GlobalLoadingContext, GlobalErrorModalContext } from './features/GlobalContextBoundary';
 
 import GlobalLoading from './shared/components/GlobalLoading';
-import GlobalErrorModal from './shared/components/GlobalErrorModal';
+import Modal from './shared/components/Modal';
 
 import SearchArea from './features/SearchArea';
 import DailyWeather from './features/DailyWeather';
@@ -17,9 +17,10 @@ function App() {
   return (
     <>
       <GlobalLoading isShow={isGlobalLoading} />
-      <GlobalErrorModal 
+      <Modal 
         isShow={globalErrorModalInfo.show}
         message={globalErrorModalInfo.message}
+        type={globalErrorModalInfo.type}
         closeModalEvt={() => setGlobalErrorModalInfo(prev => ({...prev, show: false}))}
       />
       
