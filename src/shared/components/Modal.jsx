@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 
-
+const bgColorList = {
+  Danger: 'bg-Danger-100',
+  Warning: 'bg-Warning-100'
+}
 /**
  * 回傳相對應背景顏色
  *
@@ -8,23 +11,14 @@ import PropTypes from 'prop-types';
  * @return {*} 
  */
 const bgColor = type => {
-  let result = 'bg-Danger-100';
-  switch(type) {
-    case 'Danger':
-      result = 'bg-Danger-100';
-      break;
-    case 'Warning':
-      result = 'bg-Warning-100';
-      break;
-    default:
-      result = 'bg-Warning-100';
-      break;
-  }
-
-  return result;
+  if(bgColorList[type]) return bgColorList[type]
+  return bgColorList['Danger']
 }
 
-
+const iconColorList = {
+  Danger: 'text-Danger-500',
+  Warning: 'text-Warning-500'
+}
 /**
  * 回傳相對應 icon 顏色
  *
@@ -32,20 +26,8 @@ const bgColor = type => {
  * @return {*} 
  */
 const iconColor = type => {
-  let result = 'text-Danger-500';
-  switch(type) {
-    case 'Danger':
-      result = 'text-Danger-500';
-      break;
-    case 'Warning':
-      result = 'text-Warning-500';
-      break;
-    default:
-      result = 'text-Warning-500';
-      break;
-  }
-
-  return result;
+  if(iconColorList[type]) return iconColorList[type]
+  return iconColorList['Danger']
 }
 
 
