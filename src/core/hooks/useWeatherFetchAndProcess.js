@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { GlobalErrorModalContext, ReducerContext } from "@/features/GlobalContextBoundary";
+import { ReducerContext } from "@/features/GlobalContextBoundary";
 import { getCurrentWeather, getForecastWeather } from "../services/weather";
 
 
@@ -11,7 +11,6 @@ import { getCurrentWeather, getForecastWeather } from "../services/weather";
  * @return {*} 
  */
 const useWeatherFetchAndProcess = (setCurrentWeatherInfo, setForecastInfo) => {
-  const {setGlobalErrorModalInfo} = useContext(GlobalErrorModalContext);
   const [state, dispatch] = useContext(ReducerContext);
 
   const fetchWeatherInfo = async (city) => {
@@ -34,7 +33,6 @@ const useWeatherFetchAndProcess = (setCurrentWeatherInfo, setForecastInfo) => {
       dispatch({type: 'CLOSE', reducerName: 'globalLoading'})
     }
     catch(err) {
-      // setGlobalErrorModalInfo({show: true, message: err.message})
       dispatch({
         reducerName: 'globalModalInfo',
         type: 'OPEN',

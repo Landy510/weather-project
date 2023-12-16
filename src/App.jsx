@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { GlobalErrorModalContext, ReducerContext } from './features/GlobalContextBoundary';
+import { ReducerContext } from './features/GlobalContextBoundary';
 
 import GlobalLoading from './shared/components/GlobalLoading';
 import Modal from './shared/components/Modal';
@@ -11,16 +11,11 @@ import CurrentWeather from './features/CurrentWeather';
 function App() {
   const [currentWeatherInfo, setCurrentWeatherInfo] = useState(null);
   const [forecastInfo, setForecastInfo] = useState(new Map());
-  const {globalErrorModalInfo, setGlobalErrorModalInfo} = useContext(GlobalErrorModalContext);
   const [state, dispatch] = useContext(ReducerContext)
   return (
     <>
       <GlobalLoading isShow={state.globalLoading} />
       <Modal 
-        // isShow={globalErrorModalInfo.show}
-        // message={globalErrorModalInfo.message}
-        // type={globalErrorModalInfo.type}
-        // closeModalEvt={() => setGlobalErrorModalInfo(prev => ({...prev, show: false}))}
         isShow={state.globalModalInfo.isShow}
         message={state.globalModalInfo.message}
         type={state.globalModalInfo.modalType}
