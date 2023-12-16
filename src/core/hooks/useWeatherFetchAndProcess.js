@@ -34,7 +34,13 @@ const useWeatherFetchAndProcess = (setCurrentWeatherInfo, setForecastInfo) => {
       dispatch({type: 'CLOSE', reducerName: 'globalLoading'})
     }
     catch(err) {
-      setGlobalErrorModalInfo({show: true, message: err.message})
+      // setGlobalErrorModalInfo({show: true, message: err.message})
+      dispatch({
+        reducerName: 'globalModalInfo',
+        type: 'OPEN',
+        message: err.message,
+        modalType: 'Danger'
+      })
       dispatch({type: 'CLOSE', reducerName: 'globalLoading'})
     }
   }

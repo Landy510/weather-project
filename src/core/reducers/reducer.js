@@ -1,5 +1,5 @@
 import { loadingReducer } from "./loadingReducer"
-
+import { modalReducer } from "./modalReducer"
 
 /**
  * 統一管理共用 reducer
@@ -39,7 +39,8 @@ const combineReducer = (reducers) => {
 }
 
 const reducers = combineReducer({
-  globalLoading: loadingReducer
+  globalLoading: loadingReducer,
+  globalModalInfo: modalReducer
 })
 
 export {reducers}

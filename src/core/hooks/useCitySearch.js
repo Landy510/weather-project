@@ -1,7 +1,7 @@
 import { useState, useRef, useContext } from "react";
 
 import { getCities } from "@/core/services/cities";
-import { GlobalErrorModalContext } from "@/features/GlobalContextBoundary";
+import { GlobalErrorModalContext, ReducerContext } from "@/features/GlobalContextBoundary";
 
 
 /**
@@ -14,6 +14,8 @@ import { GlobalErrorModalContext } from "@/features/GlobalContextBoundary";
  */
 const useCitySearch = (setCityList, setIsAccordionShow, setIsCityListLoading) => {
   const {setGlobalErrorModalInfo} = useContext(GlobalErrorModalContext);
+  const [state, dispatch] = useContext(ReducerContext)
+
   const [value, setValue] = useState('');
   const timerId = useRef(null);
 
@@ -38,9 +40,15 @@ const useCitySearch = (setCityList, setIsAccordionShow, setIsCityListLoading) =>
         setIsCityListLoading(false);
       }
       catch(err) {
-        setGlobalErrorModalInfo({
-          show: true,
-          message: err.message
+        // setGlobalErrorModalInfo({
+        //   show: true,
+        //   message: err.message
+        // })
+        dispatch({
+          reducerName: 'globalModalInfo',
+          type: 'OPEN',
+          message: err.message,
+          modalType: 'Danger'
         })
         setIsCityListLoading(false);
       }

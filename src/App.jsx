@@ -17,10 +17,14 @@ function App() {
     <>
       <GlobalLoading isShow={state.globalLoading} />
       <Modal 
-        isShow={globalErrorModalInfo.show}
-        message={globalErrorModalInfo.message}
-        type={globalErrorModalInfo.type}
-        closeModalEvt={() => setGlobalErrorModalInfo(prev => ({...prev, show: false}))}
+        // isShow={globalErrorModalInfo.show}
+        // message={globalErrorModalInfo.message}
+        // type={globalErrorModalInfo.type}
+        // closeModalEvt={() => setGlobalErrorModalInfo(prev => ({...prev, show: false}))}
+        isShow={state.globalModalInfo.isShow}
+        message={state.globalModalInfo.message}
+        type={state.globalModalInfo.modalType}
+        closeModalEvt={state.globalModalInfo.closeModalEvt}
       />
       
       <div className='max-w-[1024px] px-3 pb-2 mx-auto'>

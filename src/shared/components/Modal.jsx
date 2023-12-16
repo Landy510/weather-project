@@ -1,4 +1,7 @@
+import { useContext } from 'react';
 import PropTypes from 'prop-types';
+
+import { ReducerContext } from '@/features/GlobalContextBoundary';
 
 const bgColorList = {
   Danger: 'bg-Danger-100',
@@ -46,6 +49,8 @@ const Modal = ({
   type = 'Danger',
   closeModalEvt
 }) => {
+  const [state, dispatch] = useContext(ReducerContext)
+
   return (
     <div 
       className={[
@@ -66,7 +71,14 @@ const Modal = ({
       <button 
         type="button"
         className="py-1 px-4 border-[1px] border-solid border-Black-default rounded-[0.5rem] mt-1 ml-auto block"
-        onClick={closeModalEvt}
+        // onClick={closeModalEvt}
+        onClick={() => {
+          closeModalEvt && closeModalEvt()
+          dispatch({
+            reducerName: 'globalModalInfo',
+            type: 'CLOSE'
+          })
+        }}
       >Ok</button>
     </div>
   )
