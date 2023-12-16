@@ -146,6 +146,41 @@ step1 的操作會觸發取得相關城市列表的 api，在 api 還未取得�
    </tbody>
 </table>
 
+## 主要 Reducer 介紹
+<table>
+   <thead>
+      <tr>
+         <th style='text-align:left;'>reducer 檔案名稱</th>
+         <th>功能</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td style='width:100px;'>reducer.js</td>
+         <td>
+             <strong>
+                集中管理註冊的 reducer
+             </strong>
+         </td>
+      </tr>
+      <tr>
+         <td style='width:100px;'>loadingReducer.js</td>
+         <td>
+             <strong>
+                管理元件 GlobalLoading 是否要出現
+             </strong>
+         </td>
+      </tr>
+      <tr>
+         <td style='width:100px;'>modalReducer.js</td>
+         <td>
+             <strong>
+                管理元件 Modal 彈窗內容與是否要出現
+             </strong>
+         </td>
+      </tr>
+   </tbody>
+</table>
 ---
 
 ## 使用技術
