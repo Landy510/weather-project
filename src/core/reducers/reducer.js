@@ -1,9 +1,17 @@
 import { loadingReducer } from "./loadingReducer"
+
+
+/**
+ * 統一管理共用 reducer
+ *
+ * @param {*} reducers - 要被管理的 reducer 們
+ * @return {*}
+ */
 const combineReducer = (reducers) => {
   const reducerKeys = Object.keys(reducers)
   let objInitState = {}
 
-  // --- initialize | START ---
+  // --- initialize state | START ---
   reducerKeys.forEach(key => {
     const defaultState = reducers[key](undefined, {type: ''})
     if(defaultState === undefined) {
@@ -14,19 +22,18 @@ const combineReducer = (reducers) => {
   })
   // --- END ---
 
-  // --- update |  START ---
+  // --- update state |  START ---
   return (state, action) => {
     if(action) {
-      const [reducerName, actionType] = action.type.split('/'); // 傳入值的格式 e.g. globalLoading/OPEN 要先取得要改哪一個 reducer 的內容
       reducerKeys.forEach(key => {
-        if(reducerName === key) {
-          action.type = actionType; // 將要執行的動作存入 action.type 中
+        if(action.reducerName === key) {
           const previousState = objInitState[key]
           objInitState[key] = reducers[key](previousState, action)
         }
       })
     }
-    return {...objInitState}
+
+    return {...objInitState} // 如果沒有傳入 action 則回傳既有儲存的 state
   }
   // --- END ---
 }
