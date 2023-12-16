@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { GlobalLoadingContext, GlobalErrorModalContext } from "@/features/GlobalContextBoundary";
+import { GlobalLoadingContext, GlobalErrorModalContext, ReducerContext } from "@/features/GlobalContextBoundary";
 import { getCurrentWeather, getForecastWeather } from "../services/weather";
 
 
@@ -13,9 +13,11 @@ import { getCurrentWeather, getForecastWeather } from "../services/weather";
 const useWeatherFetchAndProcess = (setCurrentWeatherInfo, setForecastInfo) => {
   const {setIsGlobalLoading} = useContext(GlobalLoadingContext);
   const {setGlobalErrorModalInfo} = useContext(GlobalErrorModalContext);
+  const [state, dispatch] = useContext(ReducerContext);
 
   const fetchWeatherInfo = async (city) => {
-    setIsGlobalLoading(true);
+    // setIsGlobalLoading(true);
+    dispatch({type: 'globalLoading/OPEN'})
     try {
       const [currentWeatherInfo, forecastInfo] = await Promise.all([getCurrentWeather(city.lat, city.lon), getForecastWeather(city.lat, city.lon)]);
       let tempForecastInfoInMap = new Map(); // 用來儲存未來五天的天氣資訊，預計的儲存格式 {{key: 3, val: []}, {key: 4, val: []}}
@@ -31,11 +33,13 @@ const useWeatherFetchAndProcess = (setCurrentWeatherInfo, setForecastInfo) => {
 
       setCurrentWeatherInfo(currentWeatherInfo)
       setForecastInfo(tempForecastInfoInMap);
-      setIsGlobalLoading(false);
+      // setIsGlobalLoading(false);
+      dispatch({type: 'globalLoading/CLOSE'})
     }
     catch(err) {
       setGlobalErrorModalInfo({show: true, message: err.message})
-      setIsGlobalLoading(false);
+      // setIsGlobalLoading(false);
+      dispatch({type: 'globalLoading/CLOSE'})
     }
   }
 

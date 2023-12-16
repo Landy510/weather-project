@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { GlobalLoadingContext, GlobalErrorModalContext } from './features/GlobalContextBoundary';
+import { GlobalLoadingContext, GlobalErrorModalContext, ReducerContext } from './features/GlobalContextBoundary';
 
 import GlobalLoading from './shared/components/GlobalLoading';
 import Modal from './shared/components/Modal';
@@ -13,10 +13,11 @@ function App() {
   const [forecastInfo, setForecastInfo] = useState(new Map());
   const {isGlobalLoading} = useContext(GlobalLoadingContext);
   const {globalErrorModalInfo, setGlobalErrorModalInfo} = useContext(GlobalErrorModalContext);
-
+  const [state, dispatch] = useContext(ReducerContext)
   return (
     <>
-      <GlobalLoading isShow={isGlobalLoading} />
+      {/* <GlobalLoading isShow={isGlobalLoading} /> */}
+      <GlobalLoading isShow={state.globalLoading} />
       <Modal 
         isShow={globalErrorModalInfo.show}
         message={globalErrorModalInfo.message}
@@ -35,7 +36,10 @@ function App() {
           setForecastInfo={setForecastInfo}
         />
 
-        <div className={isGlobalLoading ? '' : 'loaded'}>
+        <div 
+          // className={isGlobalLoading ? '' : 'loaded'}
+          className={state.globalLoading ? '' : 'loaded'}
+        >
             {
               !currentWeatherInfo && [...forecastInfo.keys()].length === 0 ?
               <p className='text-[3rem] font-thin text-center mt-10'>- No Related Weather Info -</p>
