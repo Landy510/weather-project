@@ -6,7 +6,7 @@ const key = 'ce7dc98745e7df16a0b03d2403b93867'
 
 
 /**
- * 取的當前天氣 api
+ * 取得當前天氣 api
  *
  * @export
  * @param {*} lat - 指定城市的緯度
@@ -19,7 +19,7 @@ export function getCurrentWeather(lat, lon) {
 
 
 /**
- * 取的未來五天天氣資訊 api
+ * 取得未來五天天氣資訊 api
  *
  * @export
  * @param {*} lat - 指定城市的緯度

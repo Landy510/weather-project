@@ -22,7 +22,7 @@ const combineReducer = (reducers) => {
   })
   // --- END ---
 
-  // --- update state |  START ---
+  // --- update state logic |  START ---
   return (state, action) => {
     if(action) {
       reducerKeys.forEach(key => {
@@ -33,7 +33,7 @@ const combineReducer = (reducers) => {
       })
     }
 
-    return {...objInitState} // 如果沒有傳入 action 則回傳既有儲存的 state
+    return {...objInitState} // 回傳最新的 state
   }
   // --- END ---
 }
