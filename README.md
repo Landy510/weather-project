@@ -2,7 +2,7 @@
 
 ## 元件在畫面的位置
 <img src="https://i.imgur.com/ZbbEJet.png" title="source: imgur.com" width="700" />
-<img src="https://i.imgur.com/duAtrkS.png" title="source: imgur.com" width="700" />
+<img src="https://i.imgur.com/TpDv1s2.png" title="source: imgur.com" width="700" />
 
 ## 操作說明
 **step1.** <br/>
@@ -175,7 +175,7 @@ step1 的操作會觸發取得相關城市列表的 api，在 api 還未取得�
          <td style='width:100px;'>modalReducer.js</td>
          <td>
              <strong>
-                管理元件 Modal 彈窗內容與是否要出現
+                管理元件 Modal 彈窗內容與彈窗是否要出現
              </strong>
          </td>
       </tr>
