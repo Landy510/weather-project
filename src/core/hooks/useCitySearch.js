@@ -18,8 +18,9 @@ const useCitySearch = (setCityList, setIsAccordionShow, setIsCityListLoading) =>
   const [value, setValue] = useState('');
   const timerId = useRef(null);
 
-  const onChange = e => {
-    const inputVal = e.target.value.trim();
+  const onChange = val => {
+    // const inputVal = e.target.value.trim();
+    const inputVal = val;
     setValue(inputVal);
     if(timerId.current) clearTimeout(timerId.current);
     if(!inputVal) return; // 沒有輸入內容就不去打 api

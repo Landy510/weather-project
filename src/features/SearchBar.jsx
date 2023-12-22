@@ -13,7 +13,10 @@ const SearchBar = ({inputVal, onInputChange, isCityListLoading}) => {
   
   return (
     <form 
-      onSubmit={null}
+      onSubmit={e => {
+        e.preventDefault();
+        onInputChange(e.target['cityName'].value.trim())
+      }}
       className={[
         "relative z-[3] bg-White flex items-center shadow-[0_0_8px_rgba(0,0,0,0.3)] rounded-[2rem] pl-3 pr-2 mt-2",
         isCityListLoading ? 'opacity-40' : ''
@@ -23,8 +26,9 @@ const SearchBar = ({inputVal, onInputChange, isCityListLoading}) => {
         className="w-[1px] grow bg-transparent"
         placeholder='Please Input City Name (e.g. Taipei)'
         type="text"
+        name='cityName'
         value={inputVal}
-        onChange={e => onInputChange(e)}
+        onChange={e => onInputChange(e.target.value.trim())}
       />
       <span className="material-symbols-outlined">
         search
