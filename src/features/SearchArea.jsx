@@ -37,8 +37,8 @@ const SearchArea = ({setCurrentWeatherInfo, setForecastInfo}) => {
       {/* --- END --- */}
 
       <div className='relative'>
-        <div className='absolute -right-[15rem]'>
-          <p>Recent 5 Records</p>
+        <div className='absolute -right-[15rem] max-w-[13rem]'>
+          <p>Recent {recentRecords.length} Records</p>
           <ul className='border-[1px] rounded-[0.5rem] border-solid border-Black-500 max-w-[15rem]'>
             {
               recentRecords.map((city, index) => {
