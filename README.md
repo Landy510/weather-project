@@ -2,11 +2,11 @@
 
 ## 元件在畫面的位置
 <img src="https://i.imgur.com/ZbbEJet.png" title="source: imgur.com" width="700" />
-<img src="https://i.imgur.com/TpDv1s2.png" title="source: imgur.com" width="700" />
+<img src="https://i.imgur.com/xMwVw1B.png" title="source: imgur.com" width="700" />
 
 ## 操作說明
 **step1.** <br/>
-在畫面上的 input 欄位輸入欲查詢之城市的英文 (e.g. hsinchu, London) <br/>
+在畫面上的 input 欄位完成輸入欲查詢之城市的英文 (e.g. hsinchu, London)，再按下 enter 鍵。
 
 **step2.** <br/>
 step1 的操作會觸發取得相關城市列表的 api，在 api 還未取得資料的期間， input 欄位會呈現一個變淺色的 loading 樣式，待 api 回傳後，這個 loading 樣式就會消失。<br/>
