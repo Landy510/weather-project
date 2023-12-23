@@ -19,7 +19,8 @@ const SearchArea = ({setCurrentWeatherInfo, setForecastInfo}) => {
   const [isAccordionShow, setIsAccordionShow] = useState(false);
   const [cityList, setCityList] = useState([]);
   const [isCityListLoading, setIsCityListLoading] = useState(false);
-  const {inputVal, setInputValue, onInputChange} = useCitySearch(setCityList, setIsAccordionShow, setIsCityListLoading);
+  // const {inputVal, setInputValue, onInputChange} = useCitySearch(setCityList, setIsAccordionShow, setIsCityListLoading);
+  const {inputVal, setInputValue, onSearchChange} = useCitySearch(setCityList, setIsAccordionShow, setIsCityListLoading);
   const {fetchWeatherInfo} = useWeatherFetchAndProcess(setCurrentWeatherInfo, setForecastInfo)
 
   const [recentRecords, setRecentRecords] = useState(localStorage.getItem('cityList') ? JSON.parse(localStorage.getItem('cityList')) : [])
@@ -59,9 +60,11 @@ const SearchArea = ({setCurrentWeatherInfo, setForecastInfo}) => {
 
         <SearchBar 
           inputVal={inputVal}
-          onInputChange={onInputChange}
+          setInputValue={setInputValue}
+          onSearchChange={onSearchChange}
           isCityListLoading={isCityListLoading}
         />
+
         <Accordion 
           isAccordionShow={isAccordionShow} 
           onMenuClick={() => setIsAccordionShow(false)}

@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 
 import { getCities } from "@/core/services/cities";
 import { ReducerContext } from "@/features/GlobalContextBoundary";
@@ -17,45 +17,50 @@ const useCitySearch = (setCityList, setIsAccordionShow, setIsCityListLoading) =>
 
   const [value, setValue] = useState('');
   const timerId = useRef(null);
+  const responseRef = useRef([]);
 
-  const onChange = val => {
-    // const inputVal = e.target.value.trim();
-    const inputVal = val;
-    setValue(inputVal);
-    if(timerId.current) clearTimeout(timerId.current);
-    if(!inputVal) return; // 沒有輸入內容就不去打 api
-    // --- debounce feature | START ---
-    timerId.current = setTimeout(async () => {
-      try {
-        setIsCityListLoading(true);
-        const response = await getCities(inputVal);
+  const onSearchChange = async val => {
+    if(!val) return;
+    try {
+      setIsCityListLoading(true);
+      const response = await getCities(val);
+      if(timerId.current) {
+        clearTimeout(timerId.current);
+        responseRef.current = []; // 將舊有的資料刪掉
+        responseRef.current = response.data; // 將最新回傳的資料塞進去
+      }
+      else {
+        responseRef.current = response.data; // 第一次打 api 直接將回傳的資料塞進去即可
+      }
+
+      timerId.current = setTimeout(() => {
         setCityList(
-          response.data.map(item => ({
+          responseRef.current.map(item => ({
             lat: item.latitude,
             lon: item.longitude,
             cityName: `${item.name}, ${item.regionCode}, ${item.countryCode}`
           }))
         )
         setIsAccordionShow(true);
-        setIsCityListLoading(false);
-      }
-      catch(err) {
-        dispatch({
-          reducerName: 'globalModalInfo',
-          type: 'OPEN',
-          message: err.message,
-          modalType: 'Danger'
-        })
-        setIsCityListLoading(false);
-      }
-    }, 500)
-    // --- END ---
+      }, 100)
+
+      setIsCityListLoading(false);
+    }
+    catch(err) {
+      dispatch({
+        reducerName: 'globalModalInfo',
+        type: 'OPEN',
+        message: err.message,
+        modalType: 'Danger'
+      })
+      setIsCityListLoading(false);
+    }
   }
 
   return {
     inputVal: value,
     setInputValue: setValue,
-    onInputChange: onChange
+    onSearchChange
   }
 }
 
