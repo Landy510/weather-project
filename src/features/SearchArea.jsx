@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import useCitySearch from '@/core/hooks/useCitySearch';
@@ -21,6 +21,8 @@ const SearchArea = ({setCurrentWeatherInfo, setForecastInfo}) => {
   const [isCityListLoading, setIsCityListLoading] = useState(false);
   const {inputVal, setInputValue, onInputChange} = useCitySearch(setCityList, setIsAccordionShow, setIsCityListLoading);
   const {fetchWeatherInfo} = useWeatherFetchAndProcess(setCurrentWeatherInfo, setForecastInfo)
+
+  const [recentRecords, setRecentRecords] = useState(localStorage.getItem('cityList') ? JSON.parse(localStorage.getItem('cityList')) : [])
   
   return (
     <>
@@ -35,6 +37,26 @@ const SearchArea = ({setCurrentWeatherInfo, setForecastInfo}) => {
       {/* --- END --- */}
 
       <div className='relative'>
+        <div className='absolute -right-[15rem]'>
+          <p>Recent 5 Records</p>
+          <ul className='border-[1px] rounded-[0.5rem] border-solid border-Black-500 max-w-[15rem]'>
+            {
+              recentRecords.map((city, index) => {
+                return (
+                  <li 
+                    key={index}
+                    className='px-3 py-3 cursor-pointer hover:bg-Black-500 hover:text-White'
+                    onClick={() => {
+                      fetchWeatherInfo(city)
+                      setInputValue(city.cityName)
+                    }}
+                  >{city.cityName}</li>
+                )
+              })
+            }
+          </ul>
+        </div>
+
         <SearchBar 
           inputVal={inputVal}
           onInputChange={onInputChange}
@@ -46,6 +68,13 @@ const SearchArea = ({setCurrentWeatherInfo, setForecastInfo}) => {
           onItemClick={city => {
             setInputValue(city.cityName)
             fetchWeatherInfo(city)
+            if(recentRecords.every(item => item.cityName !== city.cityName)) {
+              const tempRecords = recentRecords.slice(0, 5);
+              if(tempRecords.length === 5) tempRecords.pop(); // if the amount of records is equal to 5 then remove the last element from the records
+              tempRecords.unshift(city); // add the new record to the first position of the records
+              setRecentRecords(tempRecords);
+              localStorage.setItem('cityList', JSON.stringify(tempRecords))
+            }
           }}
           cityList={cityList}
         />
