@@ -2,7 +2,7 @@
 
 ## 元件在畫面的位置
 <img src="https://i.imgur.com/ZbbEJet.png" title="source: imgur.com" width="700" />
-<img src="https://i.imgur.com/xMwVw1B.png" title="source: imgur.com" width="700" />
+<img src="https://i.imgur.com/hginAq5.png" title="source: imgur.com" width="700" />
 
 ## 操作說明
 **step1.** <br/>
@@ -124,6 +124,14 @@ step1 的操作會觸發取得相關城市列表的 api，在 api 還未取得�
          <td>
              <strong>
                 讓使用者可以輸入欲搜尋的城市
+             </strong>
+         </td>
+      </tr>
+      <tr>
+         <td style='width:100px;'>SearchRecords</td>
+         <td>
+             <strong>
+                呈現最近五筆使用者搜尋的城市紀錄
              </strong>
          </td>
       </tr>
