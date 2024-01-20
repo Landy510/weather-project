@@ -1,7 +1,17 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import dayTransfer from '@/core/utils/dayTransfer';
 import temperatureTransfer from '@/core/utils/temperatureTransfer';
 import formatTime from '@/core/utils/formatTime';
+import { isNumber } from '@/core/utils/isNumber';
+
+const addShiftEffect = (hoverIndex, elIndex) => {
+  return isNumber(hoverIndex) && elIndex > hoverIndex;
+}
+
+const addHoverEffect = (hoverIndex, elIndex) => {
+  return isNumber(elIndex) && hoverIndex === elIndex;
+}
 
 
 /**
@@ -12,31 +22,45 @@ import formatTime from '@/core/utils/formatTime';
  * @return {*} 
  */
 const DailyWeather = ({day, val}) => {
+  const [hoveringIndex, setHoveringIndex] = useState(null);
   return (
     <>
       <p className='font-light text-[1.25rem] mb-1'>{dayTransfer(day)}</p>
-      <div className="py-3 px-2 mb-5 bg-White shadow-[0_0_5px_rgba(0,0,0,0.3)] rounded-[0.5rem] flex items-center justify-between duration-500 hover:shadow-[0_0_8px_rgba(0,0,0.2)] overflow-x-auto">
+      <ul className="px-2 py-3 mb-5 flex items-center overflow-x-auto">
         {
-          val.map(individualInfo => {
+          val.map((individualInfo, index) => {
             return (
-                <div 
+                <li 
                   key={individualInfo.dt}
-                  className='shrink-0 text-center'
+                  className='rounded-[0.5rem] -mr-[10rem] shrink-0 text-center bg-White max-w-[17rem] min-h-[15rem] w-full shadow-[-20px_0_20px_rgba(0,0,0,0.3)] relative duration-200'
+                  style={{
+                    zIndex: index,
+                    ...(addShiftEffect(hoveringIndex, index) && {
+                      transform: `translateX(10rem)`
+                    }),
+                    ...(addHoverEffect(hoveringIndex, index) && {
+                      transform: `rotate(5deg)`
+                    })
+                  }}
+                  onMouseEnter={() => setHoveringIndex(index)}
+                  onMouseLeave={() => setHoveringIndex(null)}
                 >
-                  <time>{formatTime(new Date(individualInfo.dt*1000).getHours())}</time>
-                  <p className='text-[0.75rem]'>{individualInfo.weather[0].description}</p>
-                  <p className='text-[0.75rem]'>
+                  <time className='text-[1.5rem] font-black'>{formatTime(new Date(individualInfo.dt*1000).getHours())}</time>
+                  <p className='text-[1.5rem]'>{individualInfo.weather[0].description}</p>
+                  <p className='text-[1.5rem]'>
                     {temperatureTransfer(individualInfo.main.temp_max, 'metric', 'max')} / {temperatureTransfer(individualInfo.main.temp_min, 'metric', 'min')}
                   </p>
                   <img 
+                    className='block mx-auto w-[10rem]'
                     src={`https://openweathermap.org/img/wn/${individualInfo.weather[0].icon}@2x.png`} 
                     alt="" 
                   /> 
-                </div>
+                </li>
             )
           })
         }
-      </div>
+      </ul>
+      
     </>
   )
 }
