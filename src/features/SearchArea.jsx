@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import useCitySearch from '@/core/hooks/useCitySearch';
@@ -6,6 +6,7 @@ import useWeatherFetchAndProcess from '@/core/hooks/useWeatherFetchAndProcess';
 
 import SearchBar from '@/features/SearchBar';
 import Accordion from '@/features/Accordion';
+import SearchRecords from './SearchRecords';
 
 
 /**
@@ -38,25 +39,13 @@ const SearchArea = ({setCurrentWeatherInfo, setForecastInfo}) => {
       {/* --- END --- */}
 
       <div className='relative'>
-        <div className='absolute -right-[15rem] max-w-[13rem]'>
-          <p>Recent {recentRecords.length} Records</p>
-          <ul className='border-[1px] rounded-[0.5rem] border-solid border-Black-500 max-w-[15rem]'>
-            {
-              recentRecords.map((city, index) => {
-                return (
-                  <li 
-                    key={index}
-                    className='px-3 py-3 cursor-pointer hover:bg-Black-500 hover:text-White'
-                    onClick={() => {
-                      fetchWeatherInfo(city)
-                      setInputValue(city.cityName)
-                    }}
-                  >{city.cityName}</li>
-                )
-              })
-            }
-          </ul>
-        </div>
+        <SearchRecords 
+          recentRecords={recentRecords}
+          onItemClick={(city) => {
+            fetchWeatherInfo(city)
+            setInputValue(city.cityName)
+          }}
+        />
 
         <SearchBar 
           inputVal={inputVal}

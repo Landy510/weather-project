@@ -32,7 +32,7 @@ const DailyWeather = ({day, val}) => {
             return (
                 <li 
                   key={individualInfo.dt}
-                  className='rounded-[0.5rem] -mr-[10rem] shrink-0 text-center bg-White max-w-[17rem] min-h-[15rem] w-full shadow-[-20px_0_20px_rgba(0,0,0,0.3)] relative duration-200'
+                  className='rounded-[0.5rem] -mr-[9rem] shrink-0 text-center bg-White max-w-[17rem] min-h-[15rem] w-full shadow-[-20px_0_20px_rgba(0,0,0,0.3)] relative duration-200'
                   style={{
                     zIndex: index,
                     ...(addShiftEffect(hoveringIndex, index) && {
